@@ -1,0 +1,231 @@
+{%load static%}
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>portfolio</title>
+    <link rel="icon" type="image/x-icon" href="./Images/favicon.jpeg">
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+
+</head>
+
+<body>
+    <!-- navbar -->
+    <nav id="navbar" class="flex s-around bg-color">
+        <div class="left-nav">
+            <h2 class="t-white">Portfolio 🧔</h2>
+        </div>
+        <div class="right-nav">
+            <ul class="flex">
+                <li><a href="#home" class="t-white">Home <i class="fa-solid fa-house"></i></a></li>
+                <li><a href="#about" class="t-white ">About me <i class="fa-solid fa-user"></i></a></li>
+                <li><a href="#skills" class="t-white ">Skills <i class="fa-solid fa-code"></i></a></li>
+                <li><a href="#projects" class="t-white ">Projects <i class="fa-solid fa-project-diagram"></i></a></li>
+                <li><a href="#Contact" class="t-white ">Contact me <i class="fa-solid fa-rocket"></i></a></li>
+                <!-- <li><a href="#home" class="t-white ">Home<i class="fa-solid fa-house"></i></a></li> -->
+            </ul>
+        </div>
+    </nav>
+
+
+    <!-- home Section -->
+
+    <section id="home" class="flex s-around sw-80 m-auto">
+        <!-- leftsection -->
+        <div class="home-left flex item-center">
+            <div class="home-content">
+                <h6 class="t-white"> Hi , i'm </h6> <span>
+                    <h1 class="t-white"> Abhijeet Sahoo</h1>
+                </span>
+                <h4 class="t-purple">Software developer</h4>
+                <a href="{%static 'pdf/resume.pdf'%}" target="_blank">
+                    <button class="btn poppins">
+                        Resume
+                    </button>
+                </a>
+                <a href="" target="_blank" class="btn live poppins" id="hireme">
+
+                    Let's talk
+
+                </a>
+            </div>
+        </div>
+        <!-- rightsection -->
+        <div class="home-right flex s-center items-center">
+            <div class="circle flex s-center items-center" id="mainImage">
+                <img src="{%static 'images/mypic.jpg'%}" alt="profile photo">
+            </div>
+        </div>
+
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h1 class="t-center my-2 t-white f-2">About Me</h1>
+        <div class="about-container flex s-around ">
+            <div class=" about-left flex s-center items-center">
+                <!-- Here in src replade the given link with your secondary image link -->
+                <img src="{%static 'images/about.png'%}" alt="" style="width: 60%;">
+            </div>
+
+            <div class="about-right flex">
+                <div class="about-content">
+                    <h1 class="t-white m-b-1 poppins">Abhijeet Sahoo</h1>
+                    <p class="t-white poppins">My name is Abhijeet Sahoo.I’m a B.tech student Trident College in
+                        Electronics and Telecommunication Engineering.
+
+
+                        I am fresher, I’m passionate about creating quality products that meet all of the customer’s
+                        needs, and I love learning new techniques and technologies that allow me to make that
+                        happen.While I generally enjoy all of my job, the part I find most draining is estimating
+                        projects for customers. I don’t mind doing it, but I enjoy actually creating the software much
+                        more.</p>
+                    <a class="btn" id="hireme" href="mailto:sahooabhijeet500@gmail.com">Hire Me</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- skills Section -->
+    <section id="skills">
+        <h1 class="t-center my-2 t-white f-2">Skills</h1>
+        <div class="services-container flex s-around h-50">
+           
+
+            <div class="skills-right flex items-center">
+                <div class="skillss-container">
+                    <div class="python bar p-relative">
+                        <span class="bar-content left t-white">Python</span> <span
+                            class="bar-content right-skills t-white">80%</span>
+                    </div>
+
+                    <div class="css bar p-relative">
+                        <span class="bar-content left t-white">Reactjs</span> <span
+                            class="bar-content right-skills t-white">75%</span>
+                    </div>
+
+                    <div class="java bar p-relative">
+                        <span class="bar-content left t-white">React-Native</span> <span
+                            class="bar-content right-skills t-white">90%</span>
+                    </div>
+
+                    <div class="python bar p-relative">
+                        <span class="bar-content left t-white">SQL</span> <span
+                            class="bar-content right-skills t-white">80%</span>
+                    </div>
+
+                    <div class="css bar p-relative">
+                        <span class="bar-content left t-white">Django</span> <span
+                            class="bar-content right-skills t-white">75%</span>
+                    </div>
+                </div>
+            </div>
+
+             <div class="skills-left flex s-center item-center">
+                <img src="{%static 'images/skills.png'%}" alt="skills image">
+            </div>
+        </div>
+    </section>
+
+    <!-- project section -->
+    <section id="Projects">
+        <h1 class="t-center my-2 t-white f-2">Project</h1>
+        <div class="projects-container flex s-center">
+
+            <div class="projects-item flex f-col s-center items-center">
+                <h1 class="t-white poppins">Visiting Card Generator</h1>
+                <p class="t-white poppins">A simple JavaScript CLI tool to generate professional visiting cards. Input
+                    your details via prompts and get a clean, customizable card in your terminal. Fast, lightweight, and
+                    exportable as a text file. Perfect for quick networking needs!</p>
+                <div class="buttons flex s-around">
+                    <a href="https://github.com/Abhijeet288/VisitingCard" target="_blanks"
+                        class="btn mx-1 m-top">Github</a>
+                </div>
+            </div>
+
+            <div class="projects-item flex f-col s-center items-center">
+                <h1 class="t-white poppins">Snake game using Django</h1>
+                <p class="t-white poppins">About
+                    A classic Snake Game built using HTML, CSS, JavaScript, and Django. Eat food to grow longer while
+                    avoiding collisions. Features a simple UI with Django backend integration. Play, learn, and extend
+                    the project!</p>
+                <div class="button flex s-around">
+                    <a href="https://github.com/Abhijeet288/Snake-game-with-Django" target="_blank" class="btn mx-1 m-top">Github</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- contact section -->
+    <section id="Contact" class="m-b-1">
+        <h1 class="t-center my-2 t-white f-2">Contact me</h1>
+        <div class="contact-container flex s-around items-center">
+            <div class="form" id="contactform">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="name form-div">
+                        <input type="text" name="name" id="name" class="poppins" placeholder="Enter your Name" required>
+                    </div>
+                    <div class="email form-div">
+                        <input type="email" name="email" id="" class="poppins" placeholder="Enter your Email address"
+                            required>
+                    </div>
+
+                    <div class="phone form-div">
+                        <input type="phone" name="number" id="" class="poppins" placeholder="Enter your Phone Number "
+                            required>
+                    </div>
+
+                    <div class="textarea form-div">
+                        <textarea name="content" id="textarea" cols="30" rows="10" class="poppins"
+                            placeholder="Enter your message" required> </textarea>
+                    </div>
+
+                    <button type="submit" class="btn poppins" id="submit"> send <i
+                            class="fa-brands fa-telegram"></i></button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- footer section -->
+    <footer id="footer">
+        <ul class="flex s-center w-80 m-auto my-2 res">
+            <li><a href="#home" class="poppins">Home</a></li>
+            <li><a href="#about" class="poppins">About</a></li>
+            <li><a href="#skills" class="poppins">Skills</a></li>
+            <li><a href="#projects" class="poppins">Projects</a></li>
+            <li><a href="#portfolio" class="poppins">Portfolio</a></li>
+
+        </ul>
+
+        <ul class="flex s-center w-80 font-awesome">
+            <a href="https://www.linkedin.com/in/abhijeetsahoo288/" target="_blank">
+                <li> <i class="fa-brands fa-linkedin-in"></i></li>
+            </a>
+
+            <a href="https://github.com/Abhijeet288/" target="_blank">
+                <li> <i class="fa-brands fa-github"></i></li>
+            </a>
+            <!-- <a href="" target="_blank">
+                <li> <i class="fa-brands fa-instagram"></i></li>
+            </a> -->
+        </ul>
+
+        <p class="t-center my-2 poppins"> All rights Reserved and Copyright &copy; Designed by -<span
+                class="cpy-white poppins">Abhijeet Sahoo</span> </p>
+
+    </footer>
+
+
+</body>
+
+</html>
