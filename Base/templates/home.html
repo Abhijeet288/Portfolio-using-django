@@ -1,231 +1,1811 @@
-{%load static%}
+{% load static %}
 <!DOCTYPE html>
-<!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>portfolio</title>
-    <link rel="icon" type="image/x-icon" href="./Images/favicon.jpeg">
-    <link rel="stylesheet" href="{%static 'css/style.css'%}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abhijeet Sahoo — Full Stack Developer &amp; Mobile App Developer</title>
+  <meta name="description" content="Abhijeet Sahoo — Full Stack Software Developer with expertise in React.js, React Native, Node.js, Django. Building scalable web &amp; mobile apps.">
+  <meta name="keywords" content="Abhijeet Sahoo, Full Stack Developer, React Native, Django, Node.js, Portfolio, Odisha, India">
+  <meta name="author" content="Abhijeet Sahoo">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%237c3aed'/><text x='50%25' y='58%25' text-anchor='middle' dominant-baseline='middle' fill='white' font-size='17' font-weight='bold' font-family='Arial'>A</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <style>
+/* ═══════════════════════════════════════════════════
+   LIGHT / DARK THEME SYSTEM
+═══════════════════════════════════════════════════ */
+[data-theme="light"] {
+  --bg-primary:    #f8f7ff;
+  --bg-secondary:  #ede9fe;
+  --bg-card:       rgba(124,58,237,0.05);
+  --bg-card-hover: rgba(124,58,237,0.09);
+  --border:        rgba(124,58,237,0.15);
+  --border-glow:   rgba(124,58,237,0.35);
+  --txt:           #1a0533;
+  --txt-2:         #4a3270;
+  --txt-3:         #7c5fae;
+  --txt-m:         #8c72b8;
+  --grad-nav:      linear-gradient(180deg,rgba(248,247,255,0.97),rgba(237,233,254,0.95));
+}
+[data-theme="light"] body { background: var(--bg-primary); color: var(--txt); }
+[data-theme="light"] body::before { opacity: 0.35; }
+[data-theme="light"] #particles-canvas { opacity: 0.25; }
+[data-theme="light"] .tl-card,
+[data-theme="light"] .proj-card,
+[data-theme="light"] .edu-card,
+[data-theme="light"] .cert-card,
+[data-theme="light"] .lead-card,
+[data-theme="light"] .info-card,
+[data-theme="light"] .chatbot-window,
+[data-theme="light"] .terminal-box,
+[data-theme="light"] .contact-card,
+[data-theme="light"] .sk-track,
+[data-theme="light"] .tech-cat,
+[data-theme="light"] .gh-stat-card,
+[data-theme="light"] .gh-lang-item { background: rgba(255,255,255,0.85); border-color: rgba(124,58,237,0.18); }
+[data-theme="light"] .hbadge { background: rgba(255,255,255,0.92); }
+[data-theme="light"] .pill { background: rgba(124,58,237,0.08); border-color: rgba(124,58,237,0.2); color: var(--txt-2); }
+[data-theme="light"] #page-loader { background: var(--bg-primary); }
+[data-theme="light"] .img-ring::before { background: var(--bg-primary); }
+[data-theme="light"] .t-comment { color: #6a9955; }
+[data-theme="light"] .t-key { color: #0070c1; }
+[data-theme="light"] .t-str { color: #a31515; }
+[data-theme="light"] .t-val { color: #0070c1; }
+[data-theme="light"] .t-arr { color: #7c3aed; }
+[data-theme="light"] .t-cmd { color: #555; }
+[data-theme="light"] .terminal-body { background: #f3f0ff; }
+[data-theme="light"] .form-ctrl { background: rgba(255,255,255,0.9); border-color: rgba(124,58,237,0.2); color: var(--txt); }
+[data-theme="light"] .form-ctrl::placeholder { color: var(--txt-3); }
+[data-theme="light"] .quick-btn { background: rgba(124,58,237,0.08); color: var(--txt-2); border-color: rgba(124,58,237,0.18); }
+[data-theme="light"] .modal-overlay { background: rgba(10,5,30,0.7); }
+[data-theme="light"] .modal-box { background: #fff; border-color: rgba(124,58,237,0.2); }
+[data-theme="light"] .social-chip { background: rgba(255,255,255,0.8); border-color: rgba(124,58,237,0.15); color: var(--txt-2); }
+[data-theme="light"] footer { background: rgba(255,255,255,0.85); border-top-color: rgba(124,58,237,0.12); }
+[data-theme="light"] .matcher-box { background: rgba(255,255,255,0.9); }
+[data-theme="light"] .matcher-textarea { background: rgba(255,255,255,0.95); border-color: rgba(124,58,237,0.2); color: var(--txt); }
 
+/* ═══════════════════════════════════════════════════
+   THEME TOGGLE BUTTON
+═══════════════════════════════════════════════════ */
+.theme-toggle {
+  width:38px; height:38px; border-radius:50%;
+  background: var(--bg-card); border: 1px solid var(--border);
+  color: var(--txt); font-size:.95rem;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; transition: all var(--tx);
+  backdrop-filter: blur(10px);
+}
+.theme-toggle:hover { background: rgba(124,58,237,.2); border-color: var(--p); color: var(--p); transform: rotate(20deg); }
 
+/* ═══════════════════════════════════════════════════
+   GITHUB STATS SECTION
+═══════════════════════════════════════════════════ */
+#github-stats { padding: 5rem 5% 4rem; }
+.gh-wrapper { max-width: 1200px; margin: 0 auto; }
+.gh-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.1rem; margin-bottom: 2rem; }
+.gh-stat-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 1.4rem 1.2rem;
+  text-align: center; transition: all var(--tx);
+  backdrop-filter: blur(12px);
+}
+.gh-stat-card:hover { background: var(--bg-card-hover); border-color: rgba(124,58,237,.4); transform: translateY(-4px); box-shadow: 0 8px 30px rgba(124,58,237,.15); }
+.gh-stat-icon { font-size: 1.4rem; margin-bottom:.6rem; }
+.gh-stat-num {
+  font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700;
+  background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.gh-stat-label { font-size: .72rem; color: var(--txt-m); text-transform: uppercase; letter-spacing: .06em; margin-top:.2rem; }
+.gh-langs { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.5rem; justify-content: center; }
+.gh-lang-item {
+  display: flex; align-items: center; gap: .5rem;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--r-full); padding: .4rem .95rem;
+  font-size: .78rem; font-weight: 600; transition: all var(--tx);
+}
+.gh-lang-item:hover { transform: scale(1.05); }
+.gh-lang-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink:0; }
+.gh-recent { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-top: 1.5rem; }
+.gh-repo-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--r-md); padding: 1rem 1.1rem;
+  text-decoration: none; color: var(--txt);
+  transition: all var(--tx); display: flex; flex-direction: column; gap: .5rem;
+}
+.gh-repo-card:hover { background: var(--bg-card-hover); border-color: rgba(124,58,237,.4); transform: translateY(-3px); }
+.gh-repo-name { font-size: .85rem; font-weight: 700; color: var(--p); }
+.gh-repo-desc { font-size: .75rem; color: var(--txt-2); line-height: 1.55; flex: 1; }
+.gh-repo-meta { display: flex; gap: .8rem; font-size: .72rem; color: var(--txt-m); }
+.gh-loading { text-align: center; padding: 3rem; color: var(--txt-m); }
+.gh-loading i { font-size: 2rem; animation: spin 1s linear infinite; margin-bottom: .8rem; display: block; color: var(--p); }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ═══════════════════════════════════════════════════
+   AI RESUME MATCHER SECTION
+═══════════════════════════════════════════════════ */
+#resume-matcher { padding: 5rem 5% 4rem; }
+.matcher-wrapper { max-width: 900px; margin: 0 auto; }
+.matcher-box {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--r-xl); padding: 2.5rem;
+  backdrop-filter: blur(12px);
+}
+.matcher-desc { color: var(--txt-2); font-size: .92rem; line-height: 1.75; margin-bottom: 1.5rem; }
+.matcher-textarea {
+  width: 100%; min-height: 160px; padding: 1rem 1.2rem;
+  background: rgba(255,255,255,.04); border: 1px solid var(--border);
+  border-radius: var(--r-md); color: var(--txt);
+  font-family: 'Inter', sans-serif; font-size: .9rem; line-height: 1.65;
+  resize: vertical; transition: border-color var(--tx);
+  outline: none;
+}
+.matcher-textarea:focus { border-color: var(--p); box-shadow: 0 0 0 3px rgba(168,85,247,.12); }
+.matcher-textarea::placeholder { color: var(--txt-m); }
+.matcher-result { margin-top: 2rem; }
+.match-score-wrap { display: flex; align-items: center; gap: 2rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.score-ring-svg { width: 120px; height: 120px; flex-shrink: 0; }
+.score-ring-bg { fill: none; stroke: rgba(255,255,255,.06); stroke-width: 8; }
+.score-ring-fill { fill: none; stroke-width: 8; stroke-linecap: round; transition: stroke-dashoffset 1.5s cubic-bezier(.4,0,.2,1); }
+.score-center { text-anchor: middle; dominant-baseline: middle; font-family: 'Space Grotesk', sans-serif; font-weight: 700; }
+.match-meta { flex: 1; }
+.match-label { font-size: 1.4rem; font-weight: 700; font-family: 'Space Grotesk', sans-serif; margin-bottom: .3rem; }
+.match-summary { font-size: .9rem; color: var(--txt-2); line-height: 1.7; }
+.match-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 1rem; }
+.match-col { background: rgba(255,255,255,.03); border: 1px solid var(--border); border-radius: var(--r-md); padding: 1.1rem 1.3rem; }
+.match-col-title { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; margin-bottom: .7rem; display: flex; align-items: center; gap: .4rem; }
+.match-col-title.green { color: var(--gn); }
+.match-col-title.red { color: #f87171; }
+.match-col ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: .4rem; }
+.match-col ul li { font-size: .84rem; color: var(--txt-2); display: flex; gap: .5rem; align-items: flex-start; }
+.match-col ul li::before { content: '•'; flex-shrink: 0; }
+.match-col-title.green + ul li::before { color: var(--gn); }
+.match-col-title.red + ul li::before { color: #f87171; }
+.match-recommendation { margin-top: 1rem; padding: 1rem 1.2rem; background: rgba(124,58,237,.08); border: 1px solid rgba(124,58,237,.2); border-radius: var(--r-md); font-size: .88rem; color: var(--txt-2); }
+.match-recommendation strong { color: var(--p); }
+.matcher-error { margin-top: 1rem; padding: .9rem 1.1rem; background: rgba(239,68,68,.08); border: 1px solid rgba(239,68,68,.2); border-radius: var(--r-md); font-size: .88rem; color: #f87171; }
+
+/* ═══════════════════════════════════════════════════
+   SKILL ENDORSEMENTS
+═══════════════════════════════════════════════════ */
+.endorse-btn {
+  display: inline-flex; align-items: center; gap: .35rem;
+  font-size: .7rem; font-weight: 600; padding: .2rem .6rem;
+  border-radius: var(--r-full); border: 1px solid var(--border);
+  background: var(--bg-card); color: var(--txt-m);
+  cursor: pointer; transition: all var(--tx); margin-left: auto;
+  white-space: nowrap;
+}
+.endorse-btn:hover { border-color: var(--p); color: var(--p); background: rgba(168,85,247,.1); }
+.endorse-btn.endorsed { border-color: var(--gn); color: var(--gn); background: rgba(16,185,129,.1); }
+.endorse-btn i { font-size: .68rem; }
+
+/* ═══════════════════════════════════════════════════
+   PROJECT MODALS
+═══════════════════════════════════════════════════ */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 5000;
+  background: rgba(3,3,16,.85);
+  backdrop-filter: blur(12px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 1.5rem;
+  opacity: 0; visibility: hidden; transition: all .3s ease;
+}
+.modal-overlay.open { opacity: 1; visibility: visible; }
+.modal-box {
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: var(--r-xl); max-width: 740px; width: 100%;
+  max-height: 85vh; overflow-y: auto;
+  transform: scale(.92) translateY(30px);
+  transition: transform .35s cubic-bezier(.34,1.56,.64,1);
+  padding: 2rem; position: relative;
+}
+.modal-overlay.open .modal-box { transform: scale(1) translateY(0); }
+.modal-close {
+  position: absolute; top: 1.2rem; right: 1.2rem;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--bg-card); border: 1px solid var(--border);
+  color: var(--txt-2); font-size: .9rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all var(--tx);
+}
+.modal-close:hover { background: rgba(239,68,68,.1); border-color: rgba(239,68,68,.3); color: #f87171; }
+.modal-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: .4rem; }
+.modal-tech { display: flex; flex-wrap: wrap; gap: .5rem; margin: .8rem 0 1.2rem; }
+.modal-desc { color: var(--txt-2); font-size: .92rem; line-height: 1.78; margin-bottom: 1.3rem; }
+.modal-highlights { margin-bottom: 1.2rem; }
+.modal-highlights h4 { font-size: .8rem; text-transform: uppercase; letter-spacing: .07em; color: var(--p); margin-bottom: .7rem; font-weight: 700; }
+.modal-highlights ul { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+.modal-highlights ul li { font-size: .88rem; color: var(--txt-2); display: flex; gap: .6rem; align-items: flex-start; }
+.modal-highlights ul li::before { content: '▸'; color: var(--p); flex-shrink: 0; }
+.modal-links { display: flex; gap: .8rem; flex-wrap: wrap; }
+.proj-card { cursor: pointer; }
+.proj-card .view-more {
+  margin-top: .8rem; font-size: .78rem; color: var(--p);
+  display: flex; align-items: center; gap: .3rem;
+  font-weight: 600; transition: gap var(--tx);
+}
+.proj-card:hover .view-more { gap: .6rem; }
+
+/* ═══════════════════════════════════════════════════
+   VISITOR ANALYTICS MINI BANNER
+═══════════════════════════════════════════════════ */
+.analytics-banner {
+  background: linear-gradient(135deg,rgba(124,58,237,.08),rgba(6,182,212,.06));
+  border: 1px solid rgba(124,58,237,.18);
+  border-radius: var(--r-lg); padding: 1rem 1.5rem;
+  display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+.analytics-stat { text-align: center; }
+.analytics-stat .num { font-family: 'Space Grotesk',sans-serif; font-size: 1.3rem; font-weight: 700; background: var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.analytics-stat .lbl { font-size: .68rem; color: var(--txt-m); text-transform: uppercase; letter-spacing: .05em; }
+.analytics-divider { width: 1px; height: 36px; background: var(--border); }
+
+/* ═══════════════════════════════════════════════════
+   EXISTING CHATBOT UPGRADES
+═══════════════════════════════════════════════════ */
+.chat-source-badge {
+  display: inline-flex; align-items: center; gap: .3rem;
+  font-size: .65rem; background: rgba(16,185,129,.1);
+  border: 1px solid rgba(16,185,129,.2); color: var(--gn);
+  padding: .15rem .5rem; border-radius: var(--r-full);
+  margin-bottom: .5rem;
+}
+.gemini-badge {
+  display: inline-flex; align-items: center; gap: .35rem;
+  font-size: .67rem; color: var(--cy);
+  background: rgba(6,182,212,.08); border: 1px solid rgba(6,182,212,.18);
+  padding: .15rem .5rem; border-radius: var(--r-full);
+}
+
+/* ═══════════════════════════════════════════════════
+   MOBILE RESPONSIVE ADDITIONS
+═══════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .gh-grid { grid-template-columns: repeat(2,1fr); }
+  .gh-recent { grid-template-columns: 1fr; }
+  .match-columns { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .gh-grid { grid-template-columns: repeat(2,1fr); gap: .8rem; }
+  .matcher-box { padding: 1.5rem; }
+  .match-score-wrap { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .score-ring-svg { width: 100px; height: 100px; }
+  .modal-box { padding: 1.4rem; max-height: 92vh; }
+  .analytics-banner { gap: 1rem; }
+}
+  </style>
 </head>
-
 <body>
-    <!-- navbar -->
-    <nav id="navbar" class="flex s-around bg-color">
-        <div class="left-nav">
-            <h2 class="t-white">Portfolio 🧔</h2>
+
+<!-- Page Loader -->
+<div id="page-loader">
+  <div class="loader-logo">A</div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+  <div class="loader-text">loading portfolio...</div>
+</div>
+
+<canvas id="particles-canvas"></canvas>
+<div class="cursor-glow" id="cursor-glow"></div>
+
+<!-- Project Modal Overlay -->
+<div class="modal-overlay" id="project-modal" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <button class="modal-close" id="modal-close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<!-- ══════════════ NAVBAR ══════════════ -->
+<nav id="navbar">
+  <a href="#home" class="nav-brand">
+    <div class="nav-logo">A</div>
+    <span class="nav-brand-text">Abhijeet.dev</span>
+  </a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#home"           class="active"><i class="fa-solid fa-house"></i>      Home</a></li>
+    <li><a href="#about"                        ><i class="fa-solid fa-user"></i>       About</a></li>
+    <li><a href="#experience"                   ><i class="fa-solid fa-briefcase"></i>  Exp</a></li>
+    <li><a href="#skills"                       ><i class="fa-solid fa-code"></i>       Skills</a></li>
+    <li><a href="#projects"                     ><i class="fa-solid fa-diagram-project"></i> Projects</a></li>
+    <li><a href="#github-stats"                 ><i class="fa-brands fa-github"></i>    GitHub</a></li>
+    <li><a href="#resume-matcher"               ><i class="fa-solid fa-robot"></i>      AI Match</a></li>
+    <li><a href="#Contact"                      ><i class="fa-solid fa-envelope"></i>   Contact</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:.7rem;">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle Light/Dark Mode">
+      <i class="fa-solid fa-moon" id="theme-icon"></i>
+    </button>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section id="home">
+  <div class="hero-grid">
+    <div class="hero-left">
+      <div class="section-badge reveal" style="transition-delay:.1s">
+        <i class="fa-solid fa-circle-dot"></i> Available for Opportunities
+      </div>
+      <p class="hero-greeting reveal" style="transition-delay:.2s">
+        <span class="wave">👋</span> Hello, I'm
+      </p>
+      <h1 class="hero-name reveal" style="transition-delay:.3s">
+        Abhijeet
+        <span class="hl-name">Sahoo</span>
+      </h1>
+      <div class="hero-role reveal" style="transition-delay:.4s">
+        <span class="typed" id="typed"></span><span class="cur"></span>
+      </div>
+      <p class="hero-summary reveal" style="transition-delay:.5s">
+        Full Stack Software Developer specializing in React.js, React Native, Node.js, Express &amp; Django.
+        Building scalable web &amp; mobile apps, real-time chat systems, admin dashboards and REST APIs
+        with a passion for clean, efficient and user-friendly software.
+      </p>
+      <div class="hero-cta reveal" style="transition-delay:.6s">
+        <a href="{% static 'pdf/resume.pdf' %}" target="_blank" class="btn-glow" id="resume-btn">
+          <i class="fa-solid fa-download"></i> Resume
+        </a>
+        <a href="#Contact" class="btn-outline" id="contact-btn">
+          <i class="fa-solid fa-rocket"></i> Let's Talk
+        </a>
+        <a href="#resume-matcher" class="btn-outline" id="ai-match-btn" style="border-color:rgba(6,182,212,.4);color:var(--cy);">
+          <i class="fa-solid fa-robot"></i> AI Match
+        </a>
+      </div>
+      <div class="hero-stats reveal" style="transition-delay:.7s">
+        <div class="stat"><div class="stat-n" data-count="3">0+</div><div class="stat-l">Work Exp</div></div>
+        <div class="stat"><div class="stat-n" data-count="6">0+</div><div class="stat-l">Projects</div></div>
+        <div class="stat"><div class="stat-n" data-count="3">0+</div><div class="stat-l">Certifications</div></div>
+        <div class="stat"><div class="stat-n" data-count="10">0+</div><div class="stat-l">Technologies</div></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="img-wrap reveal-right" style="transition-delay:.3s">
+        <div class="img-ring"></div>
+        <div class="img-glow"></div>
+        <div class="img-main">
+          <img src="{% static 'images/mypic.jpg' %}" alt="Abhijeet Sahoo — Full Stack Developer" loading="eager">
         </div>
-        <div class="right-nav">
-            <ul class="flex">
-                <li><a href="#home" class="t-white">Home <i class="fa-solid fa-house"></i></a></li>
-                <li><a href="#about" class="t-white ">About me <i class="fa-solid fa-user"></i></a></li>
-                <li><a href="#skills" class="t-white ">Skills <i class="fa-solid fa-code"></i></a></li>
-                <li><a href="#projects" class="t-white ">Projects <i class="fa-solid fa-project-diagram"></i></a></li>
-                <li><a href="#Contact" class="t-white ">Contact me <i class="fa-solid fa-rocket"></i></a></li>
-                <!-- <li><a href="#home" class="t-white ">Home<i class="fa-solid fa-house"></i></a></li> -->
-            </ul>
+        <div class="hbadge hbadge-1"><i class="fa-brands fa-react"></i> React &amp; React-Native</div>
+        <div class="hbadge hbadge-2"><i class="fa-brands fa-node-js"></i> MERN + Django</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>scroll</span><i class="fa-solid fa-chevron-down"></i></div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════ ABOUT ══════════════ -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-image-wrap reveal-left">
+      <div class="about-img-card">
+        <img src="{% static 'images/about.png' %}" alt="About Abhijeet Sahoo">
+        <div class="about-img-overlay"></div>
+      </div>
+      <div class="exp-badge">
+        <span class="exp-num">2+</span>
+        <span class="exp-lbl">Yrs Coding</span>
+      </div>
+    </div>
+    <div class="about-content reveal-right">
+      <div class="section-badge"><i class="fa-solid fa-user-tie"></i> About Me</div>
+      <h2 class="section-title">Crafting Code,<br><span class="hl">Building Products</span></h2>
+      <div class="section-line"></div>
+      <p class="about-text">
+        I'm <strong>Abhijeet Sahoo</strong>, a passionate Full Stack Software Developer from Odisha, India. Currently working as a <strong>Software Development Engineer-I at Web_Bocket Pvt Ltd</strong>, contributing to a live dating application's features, API optimization and admin panel.
+      </p>
+      <p class="about-text">
+        With hands-on experience in React.js, React Native, Node.js, Express, and Django, I specialize in building real-world applications — from e-commerce platforms to real-time chat systems and analytics dashboards. I love turning ideas into polished, high-performance products.
+      </p>
+
+      <!-- Analytics Banner -->
+      {% if visitor_count %}
+      <div class="analytics-banner">
+        <div class="analytics-stat">
+          <div class="num">{{ visitor_count }}+</div>
+          <div class="lbl">Portfolio Visitors</div>
         </div>
-    </nav>
-
-
-    <!-- home Section -->
-
-    <section id="home" class="flex s-around sw-80 m-auto">
-        <!-- leftsection -->
-        <div class="home-left flex item-center">
-            <div class="home-content">
-                <h6 class="t-white"> Hi , i'm </h6> <span>
-                    <h1 class="t-white"> Abhijeet Sahoo</h1>
-                </span>
-                <h4 class="t-purple">Software developer</h4>
-                <a href="{%static 'pdf/resume.pdf'%}" target="_blank">
-                    <button class="btn poppins">
-                        Resume
-                    </button>
-                </a>
-                <a href="" target="_blank" class="btn live poppins" id="hireme">
-
-                    Let's talk
-
-                </a>
-            </div>
+        <div class="analytics-divider"></div>
+        <div class="analytics-stat">
+          <div class="num">{{ download_count }}+</div>
+          <div class="lbl">Resume Downloads</div>
         </div>
-        <!-- rightsection -->
-        <div class="home-right flex s-center items-center">
-            <div class="circle flex s-center items-center" id="mainImage">
-                <img src="{%static 'images/mypic.jpg'%}" alt="profile photo">
+        <div class="analytics-divider"></div>
+        <div class="analytics-stat">
+          <div class="num">🟢</div>
+          <div class="lbl">Available to Hire</div>
+        </div>
+      </div>
+      {% endif %}
+
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="info-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <div class="info-txt"><strong>B.Tech — ECE</strong><span>Trident Academy of Technology</span></div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="info-txt"><strong>Location</strong><span>Odisha, India</span></div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+          <div class="info-txt"><strong>Email</strong><span>sahooabhijeet500@gmail.com</span></div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+          <div class="info-txt"><strong>Phone</strong><span>+91-9337370441</span></div>
+        </div>
+      </div>
+      <div style="margin-top:1.4rem; display:flex; gap:.9rem; flex-wrap:wrap;">
+        <a href="mailto:sahooabhijeet500@gmail.com" class="btn-glow" id="hire-btn"><i class="fa-solid fa-paper-plane"></i> Hire Me</a>
+        <a href="https://www.linkedin.com/in/abhijeetsahoo288/" target="_blank" class="btn-outline"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════ EXPERIENCE ══════════════ -->
+<section id="experience">
+  <div style="max-width:900px;margin:0 auto;">
+    <div class="section-badge reveal"><i class="fa-solid fa-briefcase"></i> Work History</div>
+    <h2 class="section-title reveal">Professional <span class="hl">Experience</span></h2>
+    <div class="section-line reveal"></div>
+    <div class="timeline">
+      <div class="tl-item reveal" style="transition-delay:.1s">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-header">
+            <div>
+              <div class="tl-title">Software Development Engineer - I</div>
+              <div class="tl-company">Web_Bocket Pvt Ltd</div>
             </div>
+            <span class="tl-date">July 2025 — Present</span>
+          </div>
+          <span class="tl-type work">Full-Time · Current</span>
+          <ul class="tl-points">
+            <li>Contributed to the development and maintenance of a live dating application.</li>
+            <li>Blended new features, optimized APIs, and fixed UI/UX issues to enhance user experience.</li>
+            <li>Integrated backend functionalities in the admin panel for user management, analytics, and moderation.</li>
+            <li>Worked on bug fixes, API integration, and performance optimization in both frontend and backend.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tl-item reveal" style="transition-delay:.2s">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-header">
+            <div>
+              <div class="tl-title">Software Consultant — App Development</div>
+              <div class="tl-company">OneWholesale</div>
+            </div>
+            <span class="tl-date">May 2025 — July 2025</span>
+          </div>
+          <span class="tl-type work">Consultant</span>
+          <ul class="tl-points">
+            <li>Developed OneWholesale, a farmer-focused e-commerce app for buying, selling and renting agricultural products.</li>
+            <li>Built responsive UI components, integrated APIs for authentication and product management, optimized app performance.</li>
+            <li>Collaborated on backend integration, implemented state management and navigation using GitHub for code quality.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tl-item reveal" style="transition-delay:.3s">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-header">
+            <div>
+              <div class="tl-title">Hardware Testing Engineer</div>
+              <div class="tl-company">IONICS Power Solutions Pvt Ltd</div>
+            </div>
+            <span class="tl-date">June 2023 — August 2024</span>
+          </div>
+          <span class="tl-type work">Full-Time</span>
+          <ul class="tl-points">
+            <li>Testing X-ray generators used for the generation of X-ray radiations.</li>
+            <li>Handling troubleshooting of customer issues and product queries.</li>
+            <li>Learning different components of testing procedures and safety protocols.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tl-item reveal" style="transition-delay:.4s">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-header">
+            <div>
+              <div class="tl-title">React-Native App Developer</div>
+              <div class="tl-company">Apptimates Software Pvt. Ltd.</div>
+            </div>
+            <span class="tl-date">Feb 2023 — June 2023</span>
+          </div>
+          <span class="tl-type intern">Internship</span>
+          <ul class="tl-points">
+            <li>Expanded and maintained high-quality mobile applications using React Native.</li>
+            <li>Collaborated with cross-functional teams to define, design, and ship new features.</li>
+            <li>Optimized applications for maximum performance and scalability up to 45%.</li>
+            <li>Reviewed design docs, prototypes and triaged 20+ bugs with Projects.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tl-item reveal" style="transition-delay:.5s">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-header">
+            <div>
+              <div class="tl-title">Full Stack Python Development Training</div>
+              <div class="tl-company">Placement &amp; Training Program</div>
+            </div>
+            <span class="tl-date">Aug 2024 — May 2025</span>
+          </div>
+          <span class="tl-type training">Training</span>
+          <ul class="tl-points">
+            <li>Frontend: HTML, CSS, JavaScript, Bootstrap</li>
+            <li>Backend: Python, Django framework</li>
+            <li>Database: MySQL, Django ORM</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════ SKILLS ══════════════ -->
+<section id="skills">
+  <div class="skills-layout">
+    <div class="reveal-left">
+      <div class="section-badge"><i class="fa-solid fa-code"></i> Tech Stack</div>
+      <h2 class="section-title">My <span class="hl">Skills</span></h2>
+      <div class="section-line"></div>
+      <div class="skills-bars">
+
+        <div class="sk-item sk-js">
+          <div class="sk-meta">
+            <div class="sk-name"><div class="sk-ico"><i class="fa-brands fa-js"></i></div>JavaScript</div>
+            <span class="sk-pct">85%</span>
+            <button class="endorse-btn" data-skill="JavaScript" id="endorse-JavaScript">
+              <i class="fa-solid fa-thumbs-up"></i>
+              <span class="endorse-count">{% if endorsements.JavaScript %}{{ endorsements.JavaScript }}{% else %}0{% endif %}</span>
+            </button>
+          </div>
+          <div class="sk-track"><div class="sk-fill" data-width="85"></div></div>
         </div>
 
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <h1 class="t-center my-2 t-white f-2">About Me</h1>
-        <div class="about-container flex s-around ">
-            <div class=" about-left flex s-center items-center">
-                <!-- Here in src replade the given link with your secondary image link -->
-                <img src="{%static 'images/about.png'%}" alt="" style="width: 60%;">
-            </div>
-
-            <div class="about-right flex">
-                <div class="about-content">
-                    <h1 class="t-white m-b-1 poppins">Abhijeet Sahoo</h1>
-                    <p class="t-white poppins">My name is Abhijeet Sahoo.I’m a B.tech student Trident College in
-                        Electronics and Telecommunication Engineering.
-
-
-                        I am fresher, I’m passionate about creating quality products that meet all of the customer’s
-                        needs, and I love learning new techniques and technologies that allow me to make that
-                        happen.While I generally enjoy all of my job, the part I find most draining is estimating
-                        projects for customers. I don’t mind doing it, but I enjoy actually creating the software much
-                        more.</p>
-                    <a class="btn" id="hireme" href="mailto:sahooabhijeet500@gmail.com">Hire Me</a>
-                </div>
-            </div>
+        <div class="sk-item sk-py">
+          <div class="sk-meta">
+            <div class="sk-name"><div class="sk-ico"><i class="fa-brands fa-python"></i></div>Python</div>
+            <span class="sk-pct">80%</span>
+            <button class="endorse-btn" data-skill="Python" id="endorse-Python">
+              <i class="fa-solid fa-thumbs-up"></i>
+              <span class="endorse-count">{% if endorsements.Python %}{{ endorsements.Python }}{% else %}0{% endif %}</span>
+            </button>
+          </div>
+          <div class="sk-track"><div class="sk-fill" data-width="80"></div></div>
         </div>
-    </section>
 
-
-    <!-- skills Section -->
-    <section id="skills">
-        <h1 class="t-center my-2 t-white f-2">Skills</h1>
-        <div class="services-container flex s-around h-50">
-           
-
-            <div class="skills-right flex items-center">
-                <div class="skillss-container">
-                    <div class="python bar p-relative">
-                        <span class="bar-content left t-white">Python</span> <span
-                            class="bar-content right-skills t-white">80%</span>
-                    </div>
-
-                    <div class="css bar p-relative">
-                        <span class="bar-content left t-white">Reactjs</span> <span
-                            class="bar-content right-skills t-white">75%</span>
-                    </div>
-
-                    <div class="java bar p-relative">
-                        <span class="bar-content left t-white">React-Native</span> <span
-                            class="bar-content right-skills t-white">90%</span>
-                    </div>
-
-                    <div class="python bar p-relative">
-                        <span class="bar-content left t-white">SQL</span> <span
-                            class="bar-content right-skills t-white">80%</span>
-                    </div>
-
-                    <div class="css bar p-relative">
-                        <span class="bar-content left t-white">Django</span> <span
-                            class="bar-content right-skills t-white">75%</span>
-                    </div>
-                </div>
-            </div>
-
-             <div class="skills-left flex s-center item-center">
-                <img src="{%static 'images/skills.png'%}" alt="skills image">
-            </div>
+        <div class="sk-item sk-rn">
+          <div class="sk-meta">
+            <div class="sk-name"><div class="sk-ico"><i class="fa-solid fa-mobile-screen"></i></div>React Native</div>
+            <span class="sk-pct">90%</span>
+            <button class="endorse-btn" data-skill="React Native" id="endorse-ReactNative">
+              <i class="fa-solid fa-thumbs-up"></i>
+              <span class="endorse-count">{% if endorsements|length %}{% with endorsements|dictsort:'0' as sorted %}{% for k,v in sorted %}{% if k == 'React Native' %}{{ v }}{% endif %}{% endfor %}{% endwith %}{% else %}0{% endif %}</span>
+            </button>
+          </div>
+          <div class="sk-track"><div class="sk-fill" data-width="90"></div></div>
         </div>
-    </section>
 
-    <!-- project section -->
-    <section id="Projects">
-        <h1 class="t-center my-2 t-white f-2">Project</h1>
-        <div class="projects-container flex s-center">
-
-            <div class="projects-item flex f-col s-center items-center">
-                <h1 class="t-white poppins">Visiting Card Generator</h1>
-                <p class="t-white poppins">A simple JavaScript CLI tool to generate professional visiting cards. Input
-                    your details via prompts and get a clean, customizable card in your terminal. Fast, lightweight, and
-                    exportable as a text file. Perfect for quick networking needs!</p>
-                <div class="buttons flex s-around">
-                    <a href="https://github.com/Abhijeet288/VisitingCard" target="_blanks"
-                        class="btn mx-1 m-top">Github</a>
-                </div>
-            </div>
-
-            <div class="projects-item flex f-col s-center items-center">
-                <h1 class="t-white poppins">Snake game using Django</h1>
-                <p class="t-white poppins">About
-                    A classic Snake Game built using HTML, CSS, JavaScript, and Django. Eat food to grow longer while
-                    avoiding collisions. Features a simple UI with Django backend integration. Play, learn, and extend
-                    the project!</p>
-                <div class="button flex s-around">
-                    <a href="https://github.com/Abhijeet288/Snake-game-with-Django" target="_blank" class="btn mx-1 m-top">Github</a>
-                </div>
-            </div>
+        <div class="sk-item sk-rj">
+          <div class="sk-meta">
+            <div class="sk-name"><div class="sk-ico"><i class="fa-brands fa-react"></i></div>React.js</div>
+            <span class="sk-pct">80%</span>
+            <button class="endorse-btn" data-skill="React.js" id="endorse-Reactjs">
+              <i class="fa-solid fa-thumbs-up"></i>
+              <span class="endorse-count">0</span>
+            </button>
+          </div>
+          <div class="sk-track"><div class="sk-fill" data-width="80"></div></div>
         </div>
-    </section>
 
-
-    <!-- contact section -->
-    <section id="Contact" class="m-b-1">
-        <h1 class="t-center my-2 t-white f-2">Contact me</h1>
-        <div class="contact-container flex s-around items-center">
-            <div class="form" id="contactform">
-                <form method="post">
-                    {% csrf_token %}
-                    <div class="name form-div">
-                        <input type="text" name="name" id="name" class="poppins" placeholder="Enter your Name" required>
-                    </div>
-                    <div class="email form-div">
-                        <input type="email" name="email" id="" class="poppins" placeholder="Enter your Email address"
-                            required>
-                    </div>
-
-                    <div class="phone form-div">
-                        <input type="phone" name="number" id="" class="poppins" placeholder="Enter your Phone Number "
-                            required>
-                    </div>
-
-                    <div class="textarea form-div">
-                        <textarea name="content" id="textarea" cols="30" rows="10" class="poppins"
-                            placeholder="Enter your message" required> </textarea>
-                    </div>
-
-                    <button type="submit" class="btn poppins" id="submit"> send <i
-                            class="fa-brands fa-telegram"></i></button>
-                </form>
-            </div>
+        <div class="sk-item sk-nd">
+          <div class="sk-meta">
+            <div class="sk-name"><div class="sk-ico"><i class="fa-brands fa-node-js"></i></div>Node.js / Express</div>
+            <span class="sk-pct">78%</span>
+            <button class="endorse-btn" data-skill="Node.js / Express" id="endorse-Nodejs">
+              <i class="fa-solid fa-thumbs-up"></i>
+              <span class="endorse-count">0</span>
+            </button>
+          </div>
+          <div class="sk-track"><div class="sk-fill" data-width="78"></div></div>
         </div>
-    </section>
 
+        <div class="sk-item sk-dj">
+          <div class="sk-meta">
+            <div class="sk-name"><div class="sk-ico"><i class="fa-brands fa-python"></i></div>Django</div>
+            <span class="sk-pct">75%</span>
+            <button class="endorse-btn" data-skill="Django" id="endorse-Django">
+              <i class="fa-solid fa-thumbs-up"></i>
+              <span class="endorse-count">0</span>
+            </button>
+          </div>
+          <div class="sk-track"><div class="sk-fill" data-width="75"></div></div>
+        </div>
 
-    <!-- footer section -->
-    <footer id="footer">
-        <ul class="flex s-center w-80 m-auto my-2 res">
-            <li><a href="#home" class="poppins">Home</a></li>
-            <li><a href="#about" class="poppins">About</a></li>
-            <li><a href="#skills" class="poppins">Skills</a></li>
-            <li><a href="#projects" class="poppins">Projects</a></li>
-            <li><a href="#portfolio" class="poppins">Portfolio</a></li>
+        <div class="sk-item sk-sql">
+          <div class="sk-meta">
+            <div class="sk-name"><div class="sk-ico"><i class="fa-solid fa-database"></i></div>SQL / MySQL</div>
+            <span class="sk-pct">80%</span>
+            <button class="endorse-btn" data-skill="SQL / MySQL" id="endorse-SQL">
+              <i class="fa-solid fa-thumbs-up"></i>
+              <span class="endorse-count">0</span>
+            </button>
+          </div>
+          <div class="sk-track"><div class="sk-fill" data-width="80"></div></div>
+        </div>
 
-        </ul>
+        <div class="sk-item sk-mg">
+          <div class="sk-meta">
+            <div class="sk-name"><div class="sk-ico"><i class="fa-solid fa-leaf"></i></div>MongoDB</div>
+            <span class="sk-pct">72%</span>
+            <button class="endorse-btn" data-skill="MongoDB" id="endorse-MongoDB">
+              <i class="fa-solid fa-thumbs-up"></i>
+              <span class="endorse-count">0</span>
+            </button>
+          </div>
+          <div class="sk-track"><div class="sk-fill" data-width="72"></div></div>
+        </div>
 
-        <ul class="flex s-center w-80 font-awesome">
-            <a href="https://www.linkedin.com/in/abhijeetsahoo288/" target="_blank">
-                <li> <i class="fa-brands fa-linkedin-in"></i></li>
-            </a>
+      </div>
+      <p style="font-size:.72rem;color:var(--txt-m);margin-top:1rem;"><i class="fa-solid fa-thumbs-up" style="color:var(--p)"></i> Click 👍 to endorse a skill — your vote helps recruiters!</p>
+    </div>
 
-            <a href="https://github.com/Abhijeet288/" target="_blank">
-                <li> <i class="fa-brands fa-github"></i></li>
-            </a>
-            <!-- <a href="" target="_blank">
-                <li> <i class="fa-brands fa-instagram"></i></li>
-            </a> -->
-        </ul>
+    <div class="reveal-right">
+      <div class="tech-cats">
+        <div class="tech-cat">
+          <h4><i class="fa-solid fa-code" style="color:var(--p);margin-right:.4rem;"></i> Languages</h4>
+          <div class="pill-group">
+            <span class="pill"><i class="fa-brands fa-js" style="color:#f7df1e"></i> JavaScript</span>
+            <span class="pill"><i class="fa-brands fa-python" style="color:#3b82f6"></i> Python</span>
+          </div>
+        </div>
+        <div class="tech-cat">
+          <h4><i class="fa-solid fa-globe" style="color:var(--cy);margin-right:.4rem;"></i> Web Development</h4>
+          <div class="pill-group">
+            <span class="pill"><i class="fa-brands fa-react" style="color:#61dafb"></i> React.js</span>
+            <span class="pill"><i class="fa-brands fa-python" style="color:#092e20"></i> Django</span>
+            <span class="pill"><i class="fa-solid fa-layer-group" style="color:#00d9ff"></i> MERN Stack</span>
+            <span class="pill"><i class="fa-brands fa-html5" style="color:#e44d26"></i> HTML5</span>
+            <span class="pill"><i class="fa-brands fa-css3-alt" style="color:#264de4"></i> CSS3</span>
+          </div>
+        </div>
+        <div class="tech-cat">
+          <h4><i class="fa-solid fa-mobile-screen" style="color:var(--pk);margin-right:.4rem;"></i> App Development</h4>
+          <div class="pill-group">
+            <span class="pill"><i class="fa-brands fa-react" style="color:#61dafb"></i> React Native</span>
+            <span class="pill"><i class="fa-brands fa-android" style="color:#3ddc84"></i> Android Studio</span>
+          </div>
+        </div>
+        <div class="tech-cat">
+          <h4><i class="fa-solid fa-server" style="color:var(--gn);margin-right:.4rem;"></i> Backend</h4>
+          <div class="pill-group">
+            <span class="pill"><i class="fa-brands fa-node-js" style="color:#68a063"></i> Node.js</span>
+            <span class="pill"><i class="fa-solid fa-bolt" style="color:#f59e0b"></i> Express</span>
+            <span class="pill"><i class="fa-solid fa-plug" style="color:#4ade80"></i> Sockets (WS)</span>
+            <span class="pill"><i class="fa-solid fa-video" style="color:#a855f7"></i> Agora Engine</span>
+          </div>
+        </div>
+        <div class="tech-cat">
+          <h4><i class="fa-solid fa-database" style="color:#f59e0b;margin-right:.4rem;"></i> Database &amp; Tools</h4>
+          <div class="pill-group">
+            <span class="pill"><i class="fa-solid fa-database" style="color:#f59e0b"></i> SQL / MySQL</span>
+            <span class="pill"><i class="fa-solid fa-leaf" style="color:#4db33d"></i> MongoDB</span>
+            <span class="pill"><i class="fa-brands fa-git-alt" style="color:#f14e32"></i> Git</span>
+            <span class="pill"><i class="fa-brands fa-github"></i> GitHub</span>
+            <span class="pill"><i class="fa-solid fa-file-excel" style="color:#1d6f42"></i> Excel</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <p class="t-center my-2 poppins"> All rights Reserved and Copyright &copy; Designed by -<span
-                class="cpy-white poppins">Abhijeet Sahoo</span> </p>
+<div class="divider"></div>
 
-    </footer>
+<!-- ══════════════ CODE TERMINAL ══════════════ -->
+<section id="code-terminal">
+  <div class="terminal-wrapper">
+    <div class="section-badge reveal" style="margin-bottom:1.4rem;"><i class="fa-solid fa-terminal"></i> Abhijeet.json</div>
+    <div class="terminal-box reveal" style="transition-delay:.1s">
+      <div class="terminal-bar">
+        <div class="t-dot red"></div>
+        <div class="t-dot yel"></div>
+        <div class="t-dot grn"></div>
+        <span class="terminal-title">abhijeet_sahoo.json — VS Code</span>
+      </div>
+      <div class="terminal-body">
+        <div class="t-line"><span class="t-comment">// Abhijeet Sahoo — Full Stack Developer Profile</span></div>
+        <div class="t-line"><span class="t-cmd">{</span></div>
+        <div class="t-line"><span class="t-key">&nbsp;&nbsp;"name"</span><span class="t-cmd">:</span> <span class="t-str">"Abhijeet Sahoo"</span><span class="t-cmd">,</span></div>
+        <div class="t-line"><span class="t-key">&nbsp;&nbsp;"role"</span><span class="t-cmd">:</span> <span class="t-str">"Full Stack Developer &amp; Mobile App Developer"</span><span class="t-cmd">,</span></div>
+        <div class="t-line"><span class="t-key">&nbsp;&nbsp;"location"</span><span class="t-cmd">:</span> <span class="t-str">"Odisha, India 🇮🇳"</span><span class="t-cmd">,</span></div>
+        <div class="t-line"><span class="t-key">&nbsp;&nbsp;"currentJob"</span><span class="t-cmd">:</span> <span class="t-str">"SDE-I @ Web_Bocket Pvt Ltd"</span><span class="t-cmd">,</span></div>
+        <div class="t-line"><span class="t-key">&nbsp;&nbsp;"aiPowered"</span><span class="t-cmd">:</span> <span class="t-val">true</span><span class="t-cmd">,</span></div>
+        <div class="t-line"><span class="t-key">&nbsp;&nbsp;"skills"</span><span class="t-cmd">:</span> <span class="t-arr">[</span></div>
+        <div class="t-line"><span class="t-str">&nbsp;&nbsp;&nbsp;&nbsp;"React.js"</span><span class="t-cmd">,</span> <span class="t-str">"React Native"</span><span class="t-cmd">,</span> <span class="t-str">"Node.js"</span><span class="t-cmd">,</span></div>
+        <div class="t-line"><span class="t-str">&nbsp;&nbsp;&nbsp;&nbsp;"Django"</span><span class="t-cmd">,</span> <span class="t-str">"Python"</span><span class="t-cmd">,</span> <span class="t-str">"MongoDB"</span><span class="t-cmd">,</span> <span class="t-str">"SQL"</span></div>
+        <div class="t-line"><span class="t-arr">&nbsp;&nbsp;]</span><span class="t-cmd">,</span></div>
+        <div class="t-line"><span class="t-key">&nbsp;&nbsp;"openToWork"</span><span class="t-cmd">:</span> <span class="t-val">true</span><span class="t-cmd">,</span></div>
+        <div class="t-line"><span class="t-key">&nbsp;&nbsp;"email"</span><span class="t-cmd">:</span> <span class="t-str">"sahooabhijeet500@gmail.com"</span></div>
+        <div class="t-line"><span class="t-cmd">}</span><span class="t-blink">█</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<div class="divider"></div>
 
+<!-- ══════════════ PROJECTS ══════════════ -->
+<section id="projects">
+  <div class="proj-header reveal">
+    <div class="section-badge" style="display:inline-flex;"><i class="fa-solid fa-diagram-project"></i> Featured Work</div>
+    <h2 class="section-title">My <span class="hl">Projects</span></h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="proj-grid">
+
+    <div class="proj-card reveal" style="transition-delay:.05s" data-modal="vheeco">
+      <div class="proj-top">
+        <div class="proj-ico-row">
+          <div class="proj-ico">🏛️</div>
+          <span class="proj-status live">Live</span>
+        </div>
+        <h3>VHEECO — Admin Dashboard</h3>
+      </div>
+      <div class="proj-body">
+        <p class="proj-desc">Admin dashboard for document service management with user, agent, wallet, and reporting modules. REST APIs & analytics.</p>
+        <div class="proj-tags">
+          <span class="ptag">React.js</span>
+          <span class="ptag">Node.js</span>
+          <span class="ptag">Express</span>
+          <span class="ptag">MongoDB</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://github.com/Abhijeet288/" target="_blank" class="plink gh"><i class="fa-brands fa-github"></i> GitHub</a>
+        </div>
+        <div class="view-more"><i class="fa-solid fa-arrow-right"></i> View Details</div>
+      </div>
+    </div>
+
+    <div class="proj-card reveal" style="transition-delay:.1s" data-modal="heartconnect">
+      <div class="proj-top">
+        <div class="proj-ico-row">
+          <div class="proj-ico">💬</div>
+          <span class="proj-status live">Live</span>
+        </div>
+        <h3>Heart Connect — Dating App</h3>
+      </div>
+      <div class="proj-body">
+        <p class="proj-desc">Enhanced push notification system & real-time chat via WebSockets. API refactoring and billing event optimization.</p>
+        <div class="proj-tags">
+          <span class="ptag">React Native</span>
+          <span class="ptag">Node.js</span>
+          <span class="ptag">Express</span>
+          <span class="ptag">WebSockets</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://github.com/Abhijeet288/" target="_blank" class="plink gh"><i class="fa-brands fa-github"></i> GitHub</a>
+        </div>
+        <div class="view-more"><i class="fa-solid fa-arrow-right"></i> View Details</div>
+      </div>
+    </div>
+
+    <div class="proj-card reveal" style="transition-delay:.15s" data-modal="drivesafe">
+      <div class="proj-top">
+        <div class="proj-ico-row">
+          <div class="proj-ico">🪪</div>
+          <span class="proj-status live">Live</span>
+        </div>
+        <h3>Drive Safe — NFC Business Card</h3>
+      </div>
+      <div class="proj-body">
+        <p class="proj-desc">Digital NFC business card mobile application for profile sharing and business information management.</p>
+        <div class="proj-tags">
+          <span class="ptag">React Native</span>
+          <span class="ptag">Node.js</span>
+          <span class="ptag">NFC</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://github.com/Abhijeet288/" target="_blank" class="plink gh"><i class="fa-brands fa-github"></i> GitHub</a>
+        </div>
+        <div class="view-more"><i class="fa-solid fa-arrow-right"></i> View Details</div>
+      </div>
+    </div>
+
+    <div class="proj-card reveal" style="transition-delay:.2s" data-modal="onewholesale">
+      <div class="proj-top">
+        <div class="proj-ico-row">
+          <div class="proj-ico">🌾</div>
+          <span class="proj-status live">Live</span>
+        </div>
+        <h3>OneWholesale — Farmer E-Commerce</h3>
+      </div>
+      <div class="proj-body">
+        <p class="proj-desc">Farmer-focused e-commerce app for buying, selling and renting agricultural products with authentication & product APIs.</p>
+        <div class="proj-tags">
+          <span class="ptag">React Native</span>
+          <span class="ptag">Node.js</span>
+          <span class="ptag">API Integration</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://github.com/Abhijeet288/" target="_blank" class="plink gh"><i class="fa-brands fa-github"></i> GitHub</a>
+        </div>
+        <div class="view-more"><i class="fa-solid fa-arrow-right"></i> View Details</div>
+      </div>
+    </div>
+
+    <div class="proj-card reveal" style="transition-delay:.25s" data-modal="visitingcard">
+      <div class="proj-top">
+        <div class="proj-ico-row">
+          <div class="proj-ico">📇</div>
+          <span class="proj-status build">Open Source</span>
+        </div>
+        <h3>Visiting Card Generator</h3>
+      </div>
+      <div class="proj-body">
+        <p class="proj-desc">React Native app with Navigation, Linear Gradient, Animations, QR Scanner, REGEX and FlatList for digital visiting cards.</p>
+        <div class="proj-tags">
+          <span class="ptag">React Native</span>
+          <span class="ptag">Animations</span>
+          <span class="ptag">QR Code</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://github.com/Abhijeet288/VisitingCard" target="_blank" class="plink gh"><i class="fa-brands fa-github"></i> GitHub</a>
+        </div>
+        <div class="view-more"><i class="fa-solid fa-arrow-right"></i> View Details</div>
+      </div>
+    </div>
+
+    <div class="proj-card reveal" style="transition-delay:.3s" data-modal="snakegame">
+      <div class="proj-top">
+        <div class="proj-ico-row">
+          <div class="proj-ico">🐍</div>
+          <span class="proj-status build">Open Source</span>
+        </div>
+        <h3>Snake Game with Django</h3>
+      </div>
+      <div class="proj-body">
+        <p class="proj-desc">Browser-based Snake Game built with HTML, CSS, JavaScript and Django backend for score tracking and user authentication.</p>
+        <div class="proj-tags">
+          <span class="ptag">Django</span>
+          <span class="ptag">Python</span>
+          <span class="ptag">JavaScript</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://github.com/Abhijeet288/Snake-game-with-Django" target="_blank" class="plink gh"><i class="fa-brands fa-github"></i> GitHub</a>
+        </div>
+        <div class="view-more"><i class="fa-solid fa-arrow-right"></i> View Details</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════ GITHUB STATS ══════════════ -->
+<section id="github-stats">
+  <div class="gh-wrapper">
+    <div class="section-badge reveal"><i class="fa-brands fa-github"></i> Live Data</div>
+    <h2 class="section-title reveal">GitHub <span class="hl">Activity</span></h2>
+    <div class="section-line reveal"></div>
+
+    <div id="gh-loading" class="gh-loading reveal">
+      <i class="fa-solid fa-circle-notch"></i>
+      Fetching live GitHub stats...
+    </div>
+    <div id="gh-data" style="display:none;">
+      <div class="gh-grid" id="gh-grid"></div>
+      <div style="text-align:center;margin-top:.5rem;">
+        <p style="font-size:.8rem;color:var(--txt-m);">Top Languages used across repositories:</p>
+        <div class="gh-langs" id="gh-langs"></div>
+      </div>
+      <div>
+        <p style="font-size:.85rem;font-weight:600;color:var(--txt-2);margin:1.5rem 0 .8rem;"><i class="fa-solid fa-code-branch" style="color:var(--p);margin-right:.4rem;"></i>Recent Repositories</p>
+        <div class="gh-recent" id="gh-recent"></div>
+      </div>
+      <div style="text-align:center;margin-top:1.5rem;">
+        <a href="https://github.com/Abhijeet288" target="_blank" class="btn-outline"><i class="fa-brands fa-github"></i> View Full Profile</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════ AI RESUME MATCHER ══════════════ -->
+<section id="resume-matcher">
+  <div class="matcher-wrapper">
+    <div class="section-badge reveal"><i class="fa-solid fa-robot"></i> AI-Powered · Gemini</div>
+    <h2 class="section-title reveal">AI Resume <span class="hl">Matcher</span></h2>
+    <div class="section-line reveal"></div>
+    <p class="reveal" style="color:var(--txt-2);font-size:.92rem;margin-bottom:2rem;max-width:620px;">
+      🎯 Paste any <strong>Job Description</strong> below and our AI will instantly analyze how well Abhijeet's profile matches — with a score, strengths, and gaps.
+    </p>
+
+    <div class="matcher-box reveal" style="transition-delay:.1s">
+      <p class="matcher-desc">
+        <i class="fa-solid fa-brain" style="color:var(--p);margin-right:.5rem;"></i>
+        This tool uses <strong>Google Gemini AI</strong> to compare Abhijeet's full profile (skills, experience, projects) against the job description you provide. Results appear in seconds.
+      </p>
+      <textarea
+        class="matcher-textarea"
+        id="jd-textarea"
+        placeholder="Paste the Job Description here...
+
+Example: 'We are looking for a Senior React Native Developer with 2+ years experience in mobile app development, REST API integration, Redux state management, and strong knowledge of JavaScript...'
+
+The more detail you provide, the more accurate the match analysis will be."
+        rows="7"
+      ></textarea>
+      <div style="display:flex;align-items:center;gap:1rem;margin-top:1rem;flex-wrap:wrap;">
+        <button class="btn-glow" id="match-btn" onclick="runMatcher()">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> Analyze Match
+        </button>
+        <button class="btn-outline" onclick="clearMatcher()" style="padding:.6rem 1.2rem;font-size:.82rem;">
+          <i class="fa-solid fa-rotate-left"></i> Clear
+        </button>
+        <span id="match-loading" style="display:none;color:var(--txt-m);font-size:.82rem;">
+          <i class="fa-solid fa-circle-notch fa-spin" style="color:var(--p);margin-right:.4rem;"></i> AI is analyzing...
+        </span>
+      </div>
+
+      <div class="matcher-result" id="matcher-result" style="display:none;"></div>
+      <div class="matcher-error" id="matcher-error" style="display:none;"></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════ EDUCATION ══════════════ -->
+<section id="education">
+  <div style="max-width:1000px;margin:0 auto;">
+    <div class="section-badge reveal"><i class="fa-solid fa-graduation-cap"></i> Academic</div>
+    <h2 class="section-title reveal">My <span class="hl">Education</span></h2>
+    <div class="section-line reveal"></div>
+    <div class="edu-grid">
+      <div class="edu-card reveal" style="transition-delay:.1s">
+        <div class="edu-icon">🎓</div>
+        <div class="edu-degree">B.Tech — Electronics &amp; Telecommunication</div>
+        <div class="edu-school">Trident Academy of Technology</div>
+        <div class="edu-meta">
+          <span class="edu-year">Aug 2019 – Jun 2023</span>
+          <span class="edu-pct">81%</span>
+        </div>
+      </div>
+      <div class="edu-card reveal" style="transition-delay:.2s">
+        <div class="edu-icon">📚</div>
+        <div class="edu-degree">Class 12th — CBSE</div>
+        <div class="edu-school">Prabhujee English Medium School</div>
+        <div class="edu-meta">
+          <span class="edu-year">Mar 2018 – Mar 2019</span>
+          <span class="edu-pct">61.2%</span>
+        </div>
+      </div>
+      <div class="edu-card reveal" style="transition-delay:.3s">
+        <div class="edu-icon">📖</div>
+        <div class="edu-degree">Class 10th — CBSE</div>
+        <div class="edu-school">Prabhujee English Medium School</div>
+        <div class="edu-meta">
+          <span class="edu-year">Mar 2018 – Mar 2019</span>
+          <span class="edu-pct">79.8%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════ CERTIFICATIONS ══════════════ -->
+<section id="certifications">
+  <div style="max-width:1000px;margin:0 auto;">
+    <div class="section-badge reveal"><i class="fa-solid fa-certificate"></i> Achievements</div>
+    <h2 class="section-title reveal">My <span class="hl">Certifications</span></h2>
+    <div class="section-line reveal"></div>
+    <div class="cert-grid">
+      <div class="cert-card reveal" style="transition-delay:.1s">
+        <div class="cert-ico"><i class="fa-solid fa-mobile-screen"></i></div>
+        <div>
+          <div class="cert-title">React-Native Mobile Application Development</div>
+          <div class="cert-badge"><i class="fa-solid fa-check-circle"></i> Certified</div>
+        </div>
+      </div>
+      <div class="cert-card reveal" style="transition-delay:.2s">
+        <div class="cert-ico"><i class="fa-brands fa-html5"></i></div>
+        <div>
+          <div class="cert-title">HTML, CSS &amp; JavaScript Essentials Bootcamp</div>
+          <div class="cert-badge"><i class="fa-solid fa-check-circle"></i> Certified</div>
+        </div>
+      </div>
+      <div class="cert-card reveal" style="transition-delay:.3s">
+        <div class="cert-ico"><i class="fa-brands fa-python"></i></div>
+        <div>
+          <div class="cert-title">Python Certified Course</div>
+          <div class="cert-badge"><i class="fa-solid fa-check-circle"></i> Certified</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════ LEADERSHIP ══════════════ -->
+<section id="leadership">
+  <div style="max-width:900px;margin:0 auto;">
+    <div class="section-badge reveal"><i class="fa-solid fa-users"></i> Community</div>
+    <h2 class="section-title reveal">Leadership &amp; <span class="hl">Volunteering</span></h2>
+    <div class="section-line reveal"></div>
+    <div class="lead-grid">
+      <div class="lead-card reveal" style="transition-delay:.1s">
+        <div class="lead-ico">🏆</div>
+        <div class="lead-txt">
+          <strong>Hackathon Volunteer</strong>
+          <p>Successfully volunteered at a HACKATHON, assisting teams to participate and give their best performance.</p>
+        </div>
+      </div>
+      <div class="lead-card reveal" style="transition-delay:.2s">
+        <div class="lead-ico">🎭</div>
+        <div class="lead-txt">
+          <strong>TECHFEST Event Host</strong>
+          <p>Successfully organized the college fest and hosted one of the events in the TECHFEST, demonstrating strong leadership and communication.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════ CONTACT ══════════════ -->
+<section id="Contact">
+  <div class="contact-wrapper">
+    <div class="contact-header reveal">
+      <div class="section-badge" style="display:inline-flex;"><i class="fa-solid fa-envelope"></i> Get In Touch</div>
+      <h2 class="section-title">Let's <span class="hl">Work Together</span></h2>
+      <div class="section-line"></div>
+      <p style="color:var(--txt-2);font-size:.92rem;margin-top:.5rem;">Got a project, idea or opportunity? I'd love to hear from you!</p>
+    </div>
+    <div class="contact-card reveal" style="transition-delay:.15s">
+      {% if messages %}
+      <div>
+        {% for message in messages %}
+        <div class="alert-msg {% if message.tags == 'error' %}alert-error{% else %}alert-success{% endif %}">
+          <i class="fa-solid {% if message.tags == 'error' %}fa-circle-xmark{% else %}fa-circle-check{% endif %}"></i>
+          {{ message }}
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      <form method="post" class="contact-form" id="contact-form">
+        {% csrf_token %}
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" name="name" id="name" class="form-ctrl" placeholder="Abhijeet Sahoo" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" name="email" id="email" class="form-ctrl" placeholder="hello@example.com" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="number">Phone Number</label>
+          <input type="tel" name="number" id="number" class="form-ctrl" placeholder="+91 98765 43210" required>
+        </div>
+        <div class="form-group">
+          <label for="textarea">Your Message</label>
+          <textarea name="content" id="textarea" class="form-ctrl" placeholder="Tell me about your project or opportunity..." required></textarea>
+        </div>
+        <button type="submit" class="btn-send" id="submit-btn">
+          <i class="fa-brands fa-telegram"></i> Send Message
+        </button>
+      </form>
+      <div class="socials-row">
+        <a href="https://www.linkedin.com/in/abhijeetsahoo288/" target="_blank" class="social-chip">
+          <i class="fa-brands fa-linkedin-in" style="color:#0A66C2"></i> LinkedIn
+        </a>
+        <a href="https://github.com/Abhijeet288/" target="_blank" class="social-chip">
+          <i class="fa-brands fa-github"></i> GitHub
+        </a>
+        <a href="mailto:sahooabhijeet500@gmail.com" class="social-chip">
+          <i class="fa-solid fa-envelope" style="color:#ea4335"></i> Email
+        </a>
+        <a href="tel:+919337370441" class="social-chip">
+          <i class="fa-solid fa-phone" style="color:#22c55e"></i> Call
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer id="footer">
+  <div class="footer-inner">
+    <ul class="footer-nav">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#github-stats">GitHub</a></li>
+      <li><a href="#resume-matcher">AI Match</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#Contact">Contact</a></li>
+    </ul>
+    <div class="footer-socials">
+      <a href="https://www.linkedin.com/in/abhijeetsahoo288/" target="_blank" class="fsoc" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="https://github.com/Abhijeet288/" target="_blank" class="fsoc" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+      <a href="mailto:sahooabhijeet500@gmail.com" class="fsoc" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+      <a href="tel:+919337370441" class="fsoc" aria-label="Phone"><i class="fa-solid fa-phone"></i></a>
+    </div>
+    <p class="footer-copy">&copy; 2025 &mdash; Designed &amp; Developed with ❤️ by <span>Abhijeet Sahoo</span> · Powered by Django &amp; Gemini AI</p>
+  </div>
+</footer>
+
+<button id="back-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+<!-- ══════════════ AI CHATBOT ══════════════ -->
+<button class="chatbot-toggle" id="chatbot-toggle" aria-label="AI Assistant">
+  <i class="fa-solid fa-robot"></i>
+  <span class="chat-badge">AI</span>
+</button>
+
+<div class="chatbot-window" id="chatbot-window">
+  <div class="chat-header">
+    <div class="chat-avatar">🤖</div>
+    <div class="chat-hinfo">
+      <div class="chat-hname">Abhi-AI Assistant</div>
+      <div class="chat-hstatus"><span class="gemini-badge"><i class="fa-solid fa-bolt"></i> Gemini AI</span></div>
+    </div>
+    <button class="chat-close" id="chat-close" aria-label="Close chat"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="chat-msgs" id="chat-msgs"></div>
+  <div class="quick-suggestions" id="quick-sugg">
+    <button class="quick-btn">Who is Abhijeet?</button>
+    <button class="quick-btn">Top skills?</button>
+    <button class="quick-btn">Work experience?</button>
+    <button class="quick-btn">Best projects?</button>
+    <button class="quick-btn">How to hire him?</button>
+  </div>
+  <div class="chat-input-row">
+    <input type="text" class="chat-input" id="chat-input" placeholder="Ask anything about Abhijeet..." autocomplete="off">
+    <button class="chat-send" id="chat-send" aria-label="Send"><i class="fa-solid fa-paper-plane"></i></button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════ -->
+<script>
+/* ── 1. Page Loader ──────────────────────────────── */
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('page-loader').classList.add('hidden'), 1400);
+});
+
+/* ── 2. Dark / Light Theme ───────────────────────── */
+const html = document.documentElement;
+const themeToggle = document.getElementById('theme-toggle');
+const themeIcon   = document.getElementById('theme-icon');
+
+function applyTheme(theme) {
+  html.setAttribute('data-theme', theme);
+  themeIcon.className = theme === 'dark' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+  localStorage.setItem('theme', theme);
+}
+// Load saved theme
+const savedTheme = localStorage.getItem('theme') || 'dark';
+applyTheme(savedTheme);
+
+themeToggle.addEventListener('click', () => {
+  applyTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+});
+
+/* ── 3. Particles ─────────────────────────────────── */
+const canvas = document.getElementById('particles-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+function resizeCanvas(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+class Particle {
+  constructor(){ this.reset(); }
+  reset(){
+    this.x  = Math.random() * canvas.width;
+    this.y  = Math.random() * canvas.height;
+    this.r  = Math.random() * 1.4 + 0.4;
+    this.vx = (Math.random()-.5)*.28;
+    this.vy = (Math.random()-.5)*.28;
+    this.alpha = Math.random()*.45 + .15;
+    const c = ['124,58,237','168,85,247','236,72,153','6,182,212','16,185,129'];
+    this.color = c[Math.floor(Math.random()*c.length)];
+  }
+  update(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>canvas.width||this.y<0||this.y>canvas.height) this.reset(); }
+  draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,this.r,0,Math.PI*2); ctx.fillStyle=`rgba(${this.color},${this.alpha})`; ctx.fill(); }
+}
+function initP(){ resizeCanvas(); particles=[]; const n=Math.min(120,Math.floor(canvas.width*canvas.height/10000)); for(let i=0;i<n;i++) particles.push(new Particle()); }
+function drawLines(){
+  for(let i=0;i<particles.length;i++) for(let j=i+1;j<particles.length;j++){
+    const dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y, d=Math.sqrt(dx*dx+dy*dy);
+    if(d<110){ ctx.beginPath(); ctx.moveTo(particles[i].x,particles[i].y); ctx.lineTo(particles[j].x,particles[j].y); ctx.strokeStyle=`rgba(124,58,237,${.07*(1-d/110)})`; ctx.lineWidth=.5; ctx.stroke(); }
+  }
+}
+function animP(){ ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{p.update();p.draw();}); drawLines(); requestAnimationFrame(animP); }
+window.addEventListener('resize', initP);
+initP(); animP();
+
+/* ── 4. Cursor Glow ─────────────────────────────────── */
+const cg = document.getElementById('cursor-glow');
+document.addEventListener('mousemove', e=>{ cg.style.left=e.clientX+'px'; cg.style.top=e.clientY+'px'; });
+
+/* ── 5. Navbar ───────────────────────────────────────── */
+const navbar    = document.getElementById('navbar');
+const hamburger = document.getElementById('hamburger');
+const navLinks  = document.getElementById('nav-links');
+
+window.addEventListener('scroll',()=>{
+  navbar.classList.toggle('scrolled', window.scrollY>50);
+  const secs = document.querySelectorAll('section');
+  let cur='';
+  secs.forEach(s=>{ if(window.scrollY>=s.offsetTop-130) cur=s.id; });
+  document.querySelectorAll('.nav-links a').forEach(a=>{ a.classList.remove('active'); if(a.getAttribute('href')==='#'+cur) a.classList.add('active'); });
+});
+hamburger.addEventListener('click',()=>{
+  navLinks.classList.toggle('open');
+  const sp = hamburger.querySelectorAll('span');
+  if(navLinks.classList.contains('open')){ sp[0].style.transform='translateY(7px) rotate(45deg)'; sp[1].style.opacity='0'; sp[2].style.transform='translateY(-7px) rotate(-45deg)'; }
+  else { sp[0].style.transform=''; sp[1].style.opacity=''; sp[2].style.transform=''; }
+});
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{ navLinks.classList.remove('open'); const sp=hamburger.querySelectorAll('span'); sp.forEach(s=>{s.style.transform='';s.style.opacity='';}); }));
+
+/* ── 6. Typewriter ───────────────────────────────────── */
+const roles = ['Full Stack Developer','React Native Expert','Mobile App Developer','Django Developer','AI-Powered Portfolio','MERN Stack Dev'];
+let ri=0, ci=0, del=false;
+const tel = document.getElementById('typed');
+function typeIt(){
+  const cur=roles[ri];
+  tel.textContent = del ? cur.substring(0,ci-1) : cur.substring(0,ci+1);
+  del ? ci-- : ci++;
+  let spd = del ? 55 : 90;
+  if(!del && ci===cur.length){ spd=2200; del=true; }
+  else if(del && ci===0){ del=false; ri=(ri+1)%roles.length; spd=400; }
+  setTimeout(typeIt, spd);
+}
+typeIt();
+
+/* ── 7. Scroll Reveal ────────────────────────────────── */
+const reveals = document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
+const ro = new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('revealed'); }); },{ threshold:.1 });
+reveals.forEach(el=>ro.observe(el));
+
+/* ── 8. Skill Bars ───────────────────────────────────── */
+const fills = document.querySelectorAll('.sk-fill');
+const fo = new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting){ setTimeout(()=>{ e.target.style.width=e.target.dataset.width+'%'; },150); fo.unobserve(e.target); } }); },{ threshold:.3 });
+fills.forEach(el=>fo.observe(el));
+
+/* ── 9. Counters ─────────────────────────────────────── */
+const counters = document.querySelectorAll('.stat-n');
+const co = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const el=e.target, end=parseInt(el.dataset.count), dur=1400, step=end/(dur/16);
+      let cur=0; const sfx=el.textContent.includes('%')?'%':'+';
+      const t=setInterval(()=>{ cur+=step; if(cur>=end){cur=end;clearInterval(t);} el.textContent=Math.floor(cur)+sfx; },16);
+      co.unobserve(el);
+    }
+  });
+},{ threshold:.5 });
+counters.forEach(el=>co.observe(el));
+
+/* ── 10. Back to top ──────────────────────────────────── */
+const bt = document.getElementById('back-top');
+window.addEventListener('scroll',()=>bt.classList.toggle('visible', window.scrollY>500));
+bt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+/* ── 11. Contact form ─────────────────────────────────── */
+const cForm = document.getElementById('contact-form');
+const sBtn  = document.getElementById('submit-btn');
+if(cForm) cForm.addEventListener('submit',()=>{ sBtn.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> Sending…'; sBtn.disabled=true; });
+
+/* ── 12. Resume Download Tracking ─────────────────────── */
+document.getElementById('resume-btn').addEventListener('click', () => {
+  fetch('/api/track-download/', { method:'POST', headers:{'X-CSRFToken': getCsrf()} })
+    .catch(()=>{});
+});
+
+function getCsrf() {
+  const cookie = document.cookie.split(';').find(c=>c.trim().startsWith('csrftoken='));
+  return cookie ? cookie.split('=')[1] : '';
+}
+
+/* ══════════════════════════════════════════════════════
+   13. REAL AI CHATBOT — Gemini Powered
+══════════════════════════════════════════════════════ */
+const chatToggle = document.getElementById('chatbot-toggle');
+const chatWindow = document.getElementById('chatbot-window');
+const chatClose  = document.getElementById('chat-close');
+const chatMsgs   = document.getElementById('chat-msgs');
+const chatInput  = document.getElementById('chat-input');
+const chatSend   = document.getElementById('chat-send');
+const quickSugg  = document.getElementById('quick-sugg');
+let chatOpened = false;
+
+function addMsg(html, type) {
+  const msg = document.createElement('div');
+  msg.className = `msg ${type}`;
+  const av = document.createElement('div');
+  av.className = 'msg-av';
+  av.textContent = type === 'bot' ? '🤖' : '👤';
+  const bubble = document.createElement('div');
+  bubble.className = 'msg-bubble';
+  if(type === 'bot') {
+    bubble.innerHTML = '<span class="gemini-badge"><i class="fa-solid fa-bolt"></i> Gemini AI</span><br>' + html;
+  } else {
+    bubble.innerHTML = html;
+  }
+  msg.appendChild(av);
+  msg.appendChild(bubble);
+  chatMsgs.appendChild(msg);
+  chatMsgs.scrollTop = chatMsgs.scrollHeight;
+}
+
+function showTyping() {
+  const d = document.createElement('div');
+  d.className = 'msg bot'; d.id = 'typing-msg';
+  d.innerHTML = `<div class="msg-av">🤖</div><div class="msg-bubble"><div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div>`;
+  chatMsgs.appendChild(d);
+  chatMsgs.scrollTop = chatMsgs.scrollHeight;
+}
+
+function removeTyping() {
+  const t = document.getElementById('typing-msg');
+  if(t) t.remove();
+}
+
+function botReply(input) {
+  showTyping();
+  chatSend.disabled = true;
+
+  fetch('/api/chat/', {
+    method: 'POST',
+    headers: { 'Content-Type':'application/json', 'X-CSRFToken': getCsrf() },
+    body: JSON.stringify({ message: input })
+  })
+  .then(r => r.json())
+  .then(data => {
+    removeTyping();
+    addMsg(data.reply || data.error || 'Something went wrong. Please try again.', 'bot');
+  })
+  .catch(() => {
+    removeTyping();
+    addMsg('Connection error. Please check your internet and try again.', 'bot');
+  })
+  .finally(() => { chatSend.disabled = false; });
+}
+
+function sendMsg() {
+  const text = chatInput.value.trim();
+  if(!text) return;
+  addMsg(text, 'user');
+  chatInput.value = '';
+  botReply(text);
+}
+
+chatToggle.addEventListener('click',()=>{
+  chatWindow.classList.toggle('open');
+  if(!chatOpened && chatWindow.classList.contains('open')){
+    chatOpened = true;
+    setTimeout(()=>addMsg(`👋 Hi! I'm <strong>Abhi-AI</strong>, powered by <strong>Google Gemini</strong>!<br><br>I know everything about Abhijeet — his skills, work experience, projects, education and more. I give real, intelligent answers.<br><br>What would you like to know? 🚀`, 'bot'), 400);
+  }
+});
+chatClose.addEventListener('click', ()=>chatWindow.classList.remove('open'));
+chatSend.addEventListener('click', sendMsg);
+chatInput.addEventListener('keydown', e=>{ if(e.key==='Enter' && !e.shiftKey) sendMsg(); });
+quickSugg.querySelectorAll('.quick-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    chatInput.value = btn.textContent;
+    sendMsg();
+    quickSugg.style.display = 'none';
+  });
+});
+
+/* ══════════════════════════════════════════════════════
+   14. GITHUB STATS
+══════════════════════════════════════════════════════ */
+const LANG_COLORS = {
+  JavaScript:'#f7df1e', Python:'#3b82f6', TypeScript:'#3178c6',
+  HTML:'#e44d26', CSS:'#264de4', Java:'#b07219', 'C++':'#f34b7d',
+  Ruby:'#cc342d', Go:'#00add8', Rust:'#dea584', Swift:'#fa7343',
+  Kotlin:'#7f52ff', Dart:'#00b4ab', Shell:'#89e051'
+};
+
+const ghObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) {
+      fetchGitHubStats();
+      ghObserver.disconnect();
+    }
+  });
+}, { threshold: 0.2 });
+ghObserver.observe(document.getElementById('github-stats'));
+
+function fetchGitHubStats() {
+  fetch('/api/github-stats/')
+  .then(r => r.json())
+  .then(data => {
+    if(data.error) { document.getElementById('gh-loading').innerHTML = `<p style="color:var(--txt-m)">Could not load GitHub data. <a href="https://github.com/Abhijeet288" target="_blank" style="color:var(--p)">View on GitHub →</a></p>`; return; }
+
+    document.getElementById('gh-loading').style.display = 'none';
+    document.getElementById('gh-data').style.display = 'block';
+
+    // Stats cards
+    const grid = document.getElementById('gh-grid');
+    grid.innerHTML = `
+      <div class="gh-stat-card"><div class="gh-stat-icon">📦</div><div class="gh-stat-num">${data.public_repos}</div><div class="gh-stat-label">Repositories</div></div>
+      <div class="gh-stat-card"><div class="gh-stat-icon">⭐</div><div class="gh-stat-num">${data.total_stars}</div><div class="gh-stat-label">Total Stars</div></div>
+      <div class="gh-stat-card"><div class="gh-stat-icon">🍴</div><div class="gh-stat-num">${data.total_forks}</div><div class="gh-stat-label">Total Forks</div></div>
+      <div class="gh-stat-card"><div class="gh-stat-icon">👥</div><div class="gh-stat-num">${data.followers}</div><div class="gh-stat-label">Followers</div></div>
+    `;
+
+    // Languages
+    const langsEl = document.getElementById('gh-langs');
+    langsEl.innerHTML = (data.top_languages || []).map(l => `
+      <div class="gh-lang-item">
+        <div class="gh-lang-dot" style="background:${LANG_COLORS[l.name]||'#888'}"></div>
+        <span>${l.name}</span>
+        <span style="color:var(--txt-m);font-size:.7rem;">(${l.count})</span>
+      </div>
+    `).join('');
+
+    // Recent repos
+    const recentEl = document.getElementById('gh-recent');
+    recentEl.innerHTML = (data.recent_repos || []).map(r => `
+      <a href="${r.url}" target="_blank" class="gh-repo-card">
+        <div class="gh-repo-name"><i class="fa-solid fa-code-branch" style="margin-right:.3rem;font-size:.75rem;"></i>${r.name}</div>
+        <div class="gh-repo-desc">${r.description || 'No description'}</div>
+        <div class="gh-repo-meta">
+          ${r.language ? `<span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${LANG_COLORS[r.language]||'#888'};margin-right:.3rem;"></span>${r.language}</span>` : ''}
+          <span>⭐ ${r.stars}</span>
+        </div>
+      </a>
+    `).join('');
+  })
+  .catch(() => {
+    document.getElementById('gh-loading').innerHTML = `<p style="color:var(--txt-m)">Could not load GitHub data. <a href="https://github.com/Abhijeet288" target="_blank" style="color:var(--p)">View on GitHub →</a></p>`;
+  });
+}
+
+/* ══════════════════════════════════════════════════════
+   15. AI RESUME MATCHER
+══════════════════════════════════════════════════════ */
+function runMatcher() {
+  const jd = document.getElementById('jd-textarea').value.trim();
+  const resultEl = document.getElementById('matcher-result');
+  const errorEl  = document.getElementById('matcher-error');
+  const loading  = document.getElementById('match-loading');
+  const btn      = document.getElementById('match-btn');
+
+  errorEl.style.display = 'none';
+  resultEl.style.display = 'none';
+
+  if(!jd || jd.length < 50) {
+    errorEl.textContent = '⚠️ Please paste a more detailed job description (at least 50 characters).';
+    errorEl.style.display = 'block';
+    return;
+  }
+
+  loading.style.display = 'inline-flex';
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Analyzing...';
+
+  fetch('/api/match-resume/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'X-CSRFToken': getCsrf() },
+    body: JSON.stringify({ job_description: jd })
+  })
+  .then(r => r.json())
+  .then(data => {
+    loading.style.display = 'none';
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> Analyze Match';
+
+    if(data.error) {
+      errorEl.textContent = '⚠️ ' + data.error;
+      errorEl.style.display = 'block';
+      return;
+    }
+
+    const score = data.match_score || 0;
+    const circumference = 2 * Math.PI * 42;
+    const offset = circumference - (score / 100) * circumference;
+
+    // Color based on score
+    let scoreColor = score >= 75 ? '#10b981' : score >= 50 ? '#f59e0b' : '#f87171';
+    let labelColor = scoreColor;
+
+    resultEl.innerHTML = `
+      <div class="match-score-wrap">
+        <svg class="score-ring-svg" viewBox="0 0 100 100">
+          <circle class="score-ring-bg" cx="50" cy="50" r="42"/>
+          <circle class="score-ring-fill" cx="50" cy="50" r="42"
+            stroke="${scoreColor}"
+            stroke-dasharray="${circumference}"
+            stroke-dashoffset="${circumference}"
+            id="score-ring-anim"
+            style="transform:rotate(-90deg);transform-origin:center;"
+          />
+          <text class="score-center" x="50" y="46" font-size="18" fill="${scoreColor}" font-weight="700">${score}%</text>
+          <text class="score-center" x="50" y="63" font-size="8" fill="var(--txt-m)">Match</text>
+        </svg>
+        <div class="match-meta">
+          <div class="match-label" style="color:${labelColor}">${data.match_label || 'Match Analysis'}</div>
+          <div class="match-summary">${data.summary || ''}</div>
+        </div>
+      </div>
+      <div class="match-columns">
+        <div class="match-col">
+          <div class="match-col-title green"><i class="fa-solid fa-check-circle"></i> Strengths Matched</div>
+          <ul>${(data.strengths || []).map(s => `<li>${s}</li>`).join('')}</ul>
+        </div>
+        <div class="match-col">
+          <div class="match-col-title red"><i class="fa-solid fa-triangle-exclamation"></i> Gaps / Notes</div>
+          <ul>${(data.gaps && data.gaps.length > 0) ? data.gaps.map(g => `<li>${g}</li>`).join('') : '<li>No major gaps identified! ✅</li>'}</ul>
+        </div>
+      </div>
+      ${data.recommendation ? `<div class="match-recommendation"><strong>🎯 Recommendation:</strong> ${data.recommendation}</div>` : ''}
+    `;
+    resultEl.style.display = 'block';
+
+    // Animate ring
+    setTimeout(() => {
+      document.getElementById('score-ring-anim').style.strokeDashoffset = offset;
+    }, 100);
+  })
+  .catch(() => {
+    loading.style.display = 'none';
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> Analyze Match';
+    errorEl.textContent = '⚠️ Network error. Please try again.';
+    errorEl.style.display = 'block';
+  });
+}
+
+function clearMatcher() {
+  document.getElementById('jd-textarea').value = '';
+  document.getElementById('matcher-result').style.display = 'none';
+  document.getElementById('matcher-error').style.display = 'none';
+}
+
+/* ══════════════════════════════════════════════════════
+   16. SKILL ENDORSEMENTS
+══════════════════════════════════════════════════════ */
+const endorsedSkills = JSON.parse(localStorage.getItem('endorsedSkills') || '[]');
+
+// Mark already-endorsed buttons
+endorsedSkills.forEach(skill => {
+  const btn = document.querySelector(`[data-skill="${skill}"]`);
+  if(btn) btn.classList.add('endorsed');
+});
+
+document.querySelectorAll('.endorse-btn').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    const skill = this.dataset.skill;
+    if(this.classList.contains('endorsed')) {
+      showToast('You already endorsed ' + skill + '! Thanks 💜');
+      return;
+    }
+
+    fetch('/api/endorse/', {
+      method: 'POST',
+      headers: { 'Content-Type':'application/json', 'X-CSRFToken': getCsrf() },
+      body: JSON.stringify({ skill: skill })
+    })
+    .then(r => r.json())
+    .then(data => {
+      const countEl = this.querySelector('.endorse-count');
+      if(data.success) {
+        countEl.textContent = data.count;
+        this.classList.add('endorsed');
+        const saved = JSON.parse(localStorage.getItem('endorsedSkills') || '[]');
+        saved.push(skill);
+        localStorage.setItem('endorsedSkills', JSON.stringify(saved));
+        showToast('👍 Thanks for endorsing ' + skill + '!');
+      } else if(data.already_endorsed) {
+        countEl.textContent = data.count;
+        this.classList.add('endorsed');
+        showToast('You already endorsed ' + skill + '!');
+      }
+    })
+    .catch(() => showToast('Could not save endorsement. Try again.'));
+  });
+});
+
+function showToast(msg) {
+  let toast = document.getElementById('toast-msg');
+  if(!toast) {
+    toast = document.createElement('div');
+    toast.id = 'toast-msg';
+    toast.style.cssText = `
+      position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(80px);
+      background:rgba(10,10,26,.95);border:1px solid rgba(168,85,247,.3);
+      color:var(--txt);padding:.75rem 1.4rem;border-radius:50px;font-size:.84rem;
+      font-weight:500;z-index:9999;transition:transform .4s cubic-bezier(.34,1.56,.64,1);
+      backdrop-filter:blur(20px);box-shadow:0 8px 30px rgba(0,0,0,.4);white-space:nowrap;
+    `;
+    document.body.appendChild(toast);
+  }
+  toast.textContent = msg;
+  toast.style.transform = 'translateX(-50%) translateY(0)';
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => { toast.style.transform = 'translateX(-50%) translateY(80px)'; }, 3000);
+}
+
+/* ══════════════════════════════════════════════════════
+   17. PROJECT MODALS
+══════════════════════════════════════════════════════ */
+const PROJECT_DATA = {
+  vheeco: {
+    icon: '🏛️',
+    title: 'VHEECO — Admin Dashboard',
+    status: 'Live',
+    tags: ['React.js','Node.js','Express','MongoDB','REST API'],
+    desc: 'Built a comprehensive admin dashboard for document service management with user management, agent management, wallet system, and reporting modules. Created REST APIs & database models for service transactions.',
+    highlights: [
+      'Analytics dashboard monitoring daily downloads, revenue, and system activity',
+      'Complete user and agent management with role-based access control',
+      'Wallet system for tracking financial transactions',
+      'REST API design with Express & MongoDB',
+      'Responsive React.js frontend with real-time data'
+    ],
+    github: 'https://github.com/Abhijeet288/',
+    live: null
+  },
+  heartconnect: {
+    icon: '💬',
+    title: 'Heart Connect — Dating App',
+    status: 'Live',
+    tags: ['React Native','Node.js','Express','WebSockets','Push Notifications'],
+    desc: 'Contributed to a live production dating application. Enhanced backend push notification system for real-time user activity and billing events. Built real-time chat using WebSockets.',
+    highlights: [
+      'Real-time chat system using WebSockets for zero-latency messaging',
+      'Push notification system for user activity and billing events',
+      'Refactored and optimized existing APIs for better performance',
+      'Admin panel for user management, analytics, and moderation',
+      'Bug fixes and performance optimization across frontend & backend'
+    ],
+    github: 'https://github.com/Abhijeet288/',
+    live: null
+  },
+  drivesafe: {
+    icon: '🪪',
+    title: 'Drive Safe — NFC Business Card',
+    status: 'Live',
+    tags: ['React Native','Node.js','Express','NFC Technology'],
+    desc: 'Built a digital NFC business card mobile application for profile sharing and business information management. Users can share their digital business card by tapping NFC-enabled devices.',
+    highlights: [
+      'NFC technology integration for contactless card sharing',
+      'Complete profile management with business info',
+      'Authentication system with secure user sessions',
+      'Optimized frontend and backend modules for fast data sharing',
+      'Cross-platform React Native implementation'
+    ],
+    github: 'https://github.com/Abhijeet288/',
+    live: null
+  },
+  onewholesale: {
+    icon: '🌾',
+    title: 'OneWholesale — Farmer E-Commerce',
+    status: 'Live',
+    tags: ['React Native','Node.js','API Integration','State Management'],
+    desc: 'A farmer-focused e-commerce app enabling users to buy, sell, and rent agricultural products. Built responsive UI components and integrated authentication & product management APIs.',
+    highlights: [
+      'Multi-category marketplace (buy, sell, rent agricultural products)',
+      'Authentication system with secure login/register flows',
+      'Product listing, search, and filter functionality',
+      'State management with efficient navigation',
+      'Performance optimizations for smooth mobile experience'
+    ],
+    github: 'https://github.com/Abhijeet288/',
+    live: null
+  },
+  visitingcard: {
+    icon: '📇',
+    title: 'Visiting Card Generator',
+    status: 'Open Source',
+    tags: ['React Native','Animations','QR Code','Linear Gradient','FlatList'],
+    desc: 'React Native app that generates professional digital visiting cards with QR codes. Features smooth animations, linear gradients, and QR scanning capabilities.',
+    highlights: [
+      'QR code generation for each digital business card',
+      'QR scanner to read and save contacts from physical cards',
+      'Smooth animations using React Native Animated API',
+      'Beautiful linear gradients for card designs',
+      'FlatList for efficient rendering of multiple card templates'
+    ],
+    github: 'https://github.com/Abhijeet288/VisitingCard',
+    live: null
+  },
+  snakegame: {
+    icon: '🐍',
+    title: 'Snake Game with Django',
+    status: 'Open Source',
+    tags: ['Django','Python','JavaScript','HTML5 Canvas','SQLite'],
+    desc: 'A browser-based Snake Game built with HTML Canvas, CSS, and JavaScript frontend, with a Python Django backend for score tracking, user authentication, and game session management.',
+    highlights: [
+      'Classic snake game built with HTML5 Canvas API',
+      'Django backend for user registration and login',
+      'Score tracking system with leaderboard',
+      'Game session management and high score storage',
+      'Responsive design that works on mobile and desktop'
+    ],
+    github: 'https://github.com/Abhijeet288/Snake-game-with-Django',
+    live: '#home'
+  }
+};
+
+const modalOverlay = document.getElementById('project-modal');
+const modalClose   = document.getElementById('modal-close');
+const modalContent = document.getElementById('modal-content');
+
+document.querySelectorAll('.proj-card[data-modal]').forEach(card => {
+  card.addEventListener('click', function() {
+    const key = this.dataset.modal;
+    const p = PROJECT_DATA[key];
+    if(!p) return;
+
+    const statusClass = p.status === 'Live' ? 'live' : 'build';
+    modalContent.innerHTML = `
+      <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:.5rem;">
+        <span style="font-size:2rem;">${p.icon}</span>
+        <span class="proj-status ${statusClass}">${p.status}</span>
+      </div>
+      <div class="modal-title">${p.title}</div>
+      <div class="modal-tech">
+        ${p.tags.map(t => `<span class="ptag">${t}</span>`).join('')}
+      </div>
+      <p class="modal-desc">${p.desc}</p>
+      <div class="modal-highlights">
+        <h4>✨ Key Features &amp; Highlights</h4>
+        <ul>${p.highlights.map(h => `<li>${h}</li>`).join('')}</ul>
+      </div>
+      <div class="modal-links">
+        ${p.github ? `<a href="${p.github}" target="_blank" class="plink gh"><i class="fa-brands fa-github"></i> GitHub</a>` : ''}
+        ${p.live ? `<a href="${p.live}" target="_blank" class="plink lv"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>` : ''}
+      </div>
+    `;
+    modalOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+modalClose.addEventListener('click', closeModal);
+modalOverlay.addEventListener('click', e => { if(e.target === modalOverlay) closeModal(); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+
+function closeModal() {
+  modalOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+</script>
 </body>
-
 </html>
