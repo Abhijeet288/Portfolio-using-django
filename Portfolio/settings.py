@@ -16,6 +16,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-wzmvgs0*rly%7m=vngwet$indy7q+a29h+18_4*-f)+j00+vdj')
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+if os.getenv('RENDER_EXTERNAL_HOSTNAME'):
+    ALLOWED_HOSTS.append(os.getenv('RENDER_EXTERNAL_HOSTNAME'))
+
 
 # ── API Keys ──────────────────────────────────────────
 GEMINI_API_KEY  = os.getenv('GEMINI_API_KEY', '')
